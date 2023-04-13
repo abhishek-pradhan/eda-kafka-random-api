@@ -1,6 +1,6 @@
 package com.mts.random.service;
 
-import com.mts.random.events.DomainEvent;
+import com.mts.dto.DomainEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

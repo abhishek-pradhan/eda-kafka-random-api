@@ -1,21 +1,14 @@
 package com.mts.random.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mts.random.events.DetailEntity;
-import com.mts.random.events.DomainEvent;
+import com.mts.dto.DetailEntity;
+import com.mts.dto.DomainEvent;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -24,8 +17,10 @@ import java.util.Random;
 public class RandomGenerator {
     private static final Logger logger = LoggerFactory.getLogger(RandomGenerator.class);
 
-    @Value("${random.apis.array}")
-    private String[] random_apis;
+    // todo: not sure why this simple array assignment is not working!
+    // @Value("${random.apis.array}")
+    // private String[] random_apis;
+    // in app.properties file: random.apis.array=city,weather
 
     @Autowired
     private KafkaProducer kafkaProducer;
@@ -48,7 +43,8 @@ public class RandomGenerator {
 
     public String getRandomApi()
     {
-        List<String> randomApis = Arrays.asList(random_apis);
+        String[] arr = {"city", "weather"}; // todo: remove this hardcoding
+        List<String> randomApis = Arrays.asList(arr);
 
         // get a random api
         Random random = new Random();
