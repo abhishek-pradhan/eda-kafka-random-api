@@ -18,7 +18,7 @@ VOLUME /tmp
 COPY --from=build /workspace/app/target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
 
-# Docker build image & run it
+# Docker build image & run it:
 # docker build -t eda-kafka-random-api .
-# docker run --name=eda-kafka-random-api -d -p 8080:8080 eda-kafka-random-api
+# docker run --name="eda-kafka-random-api" -d -p 8080:8080 --env="BOOTSTRAP_BROKERS=192.168.61.96:9092" eda-kafka-random-api
 # http://localhost:8080/actuator/health
